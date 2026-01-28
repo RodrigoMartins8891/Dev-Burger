@@ -144,8 +144,8 @@ Este projeto foi desenvolvido com foco em:
 **Rodrigo Martins**
 Desenvolvedor Full Stack
 
-* LinkedIn: *(adicione seu link aqui)*
-* GitHub: *(adicione seu link aqui)*
+* LinkedIn: (https://www.linkedin.com/in/rodrigo-martins-de-oliveira1988/)
+* GitHub: (https://github.com/RodrigoMartins8891/)
 
 ---
 
