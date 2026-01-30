@@ -1,44 +1,41 @@
 import { useState } from 'react';
-import { api } from "../api/api";
+import { api } from '../api/api';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from "jwt-decode";
 import { Link } from 'react-router-dom';
 
 
-export function Login() {
+export function Register() {
+    const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const navigate = useNavigate();
 
-    async function handleLogin(e) {
+    async function handleRegister(e) {
         e.preventDefault();
 
         try {
-            const response = await api.post('/auth/login', {
+            await api.post('/auth/register', {
+                nome,
                 email,
                 senha
             });
 
-            const token = response.data.token;
-            localStorage.setItem('token', token);
-
-            // 🔥 DECIDE PRA ONDE IR
-            const usuario = jwtDecode(token);
-
-            if (usuario.is_admin) {
-                navigate('/admin/pedidos');
-            } else {
-                navigate('/home');
-            }
-
+            alert('Cadastro realizado com sucesso!');
+            navigate('/');
         } catch (err) {
-            alert('Login inválido');
+            alert('Erro ao cadastrar');
         }
     }
 
     return (
-        <form onSubmit={handleLogin}>
-            <h1>Login</h1>
+        <form onSubmit={handleRegister}>
+            <h1>Cadastro</h1>
+
+            <input
+                placeholder="Nome"
+                value={nome}
+                onChange={e => setNome(e.target.value)}
+            />
 
             <input
                 placeholder="Email"
@@ -54,10 +51,10 @@ export function Login() {
             />
 
             <p>
-                Não tem conta? <Link to="/register">Cadastre-se</Link>
+                Já tem conta? <Link to="/login">Faça login</Link>
             </p>
             
-            <button type="submit">Entrar</button>
+            <button type="submit">Cadastrar</button>
         </form>
     );
 }

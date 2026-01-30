@@ -1,24 +1,29 @@
-"use client";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import App from '../App';
-import { Cart } from '../pages/Cart';
-import { Checkout } from '../pages/Checkout';
-import { Login } from '../pages/Login';
-import { MeusPedidos } from '../pages/MeusPedidos';
-import { AdminRoute } from './AdminRoute';
-import { AdminPedidos } from '../pages/AdminPedidos';
-import { PrivateRoute } from './PrivateRoute';
+import App from "../App";
+import Home from "../pages/Home/home";
+import Menu from "../pages/Menu/menu";
+import { Login } from "../pages/Login";
+import { Register } from "../pages/Register";
+import { MeusPedidos } from "../pages/MeusPedidos";
+import { AdminRoute } from "./AdminRoute";
+import { AdminPedidos } from "../pages/AdminPedidos";
+import { PrivateRoute } from "./PrivateRoute";
+import { Cart } from "../pages/Cart";
+import { Checkout } from "../pages/Checkout";
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
 
-        {/* rota pública (INICIAL) */}
-        <Route path="/" element={<Login />} />
+        {/* 🔓 ROTAS PÚBLICAS */}
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-        {/* rotas protegidas */}
+        {/* 🔐 ROTAS PRIVADAS (USUÁRIO LOGADO) */}
         <Route
           path="/home"
           element={
@@ -27,7 +32,6 @@ export function AppRoutes() {
             </PrivateRoute>
           }
         />
-
 
         <Route
           path="/carrinho"
@@ -56,6 +60,7 @@ export function AppRoutes() {
           }
         />
 
+        {/* 🔐 ROTAS ADMIN */}
         <Route
           path="/admin/pedidos"
           element={

@@ -23,14 +23,16 @@ function App() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>DevBurger 🍔</h1>
+      {/* HEADER */}
+      <header className="app-header">
+        <h1 className="logo">DevBurger 🍔</h1>
 
-      <Link to="/carrinho">
-        <button>Ir para o Carrinho 🛒</button>
-      </Link>
-      <Link to="/meus-pedidos">
-        <button>Meus Pedidos 📦</button>
-      </Link>
+        <nav>
+          <Link to="/app">Produtos</Link>
+          <Link to="/meus-pedidos">Meus Pedidos</Link>
+          <Link to="/carrinho">Carrinho</Link>
+        </nav>
+      </header>
       {produtos.length === 0 ? (
         <p>Carregando produtos...</p>
       ) : (
